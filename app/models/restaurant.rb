@@ -7,8 +7,8 @@ class Restaurant < ApplicationRecord
 	has_many :orders
 	has_many :users, through: :orders
 
-	has_many :menus
-	has_many :menu_items, through: :menus
+	has_many :restaurant_menu_list
+	has_many :menu_categories, through: :restaurant_menu_list
 	
 	has_many :branches
 	has_many :cities, through: :branches
