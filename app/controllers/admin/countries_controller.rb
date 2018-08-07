@@ -43,6 +43,8 @@ class Admin::CountriesController < ApplicationController
 
   def destroy
     @country = Country.find(params[:id])
+    @country.destroy
+    redirect_to(admin_countries_path)
   end
 
   private

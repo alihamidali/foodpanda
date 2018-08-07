@@ -1,2 +1,49 @@
-<h1>States#index</h1>
-<p>Find me in app/views/states/index.html.erb</p>
+<!-- Page -->
+  <div class="page">
+    <div class="page-header text-center">
+      <h1 class="page-title">Page Title</h1>
+      <p class="page-description">
+        Page Description Here.
+      </p>
+    </div>
+    <div class="page-content">
+    	<div class="panel">
+	        <header class="panel-heading">
+	          <h3 class="panel-title">Add Row</h3>
+	        </header>
+	        <div id="exampleTableAddToolbar">
+	        	<%= link_to(new_admin_state_path(), class: "btn btn-outline btn-primary") do %>
+	        	<i class="icon wb-plus" aria-hidden="true"></i> Add row
+	        	<% end %>
+	        </div>
+	        <div class="panel-body">
+	          <table class="table table-hover dataTable table-striped width-full" id="exampleTableAdd">
+	            <thead>
+	              <tr>
+	                <th>Name</th>
+	                <th>Country</th>
+	                <th>Actions</th>
+	              </tr>
+	            </thead>
+	            <tfoot>
+	              <tr>
+	                <th>Name</th>
+	                <th>Country</th>
+	                <th>Actions</th>
+	              </tr>
+	            </tfoot>
+	            <tbody>
+	            	<% @states.each do |state| %>
+	            	<tr>
+	                	<td><%= state[:state_name] %></td>
+	                	<td><%= state[:country_name] %></td>
+	                	<td><%= link_to 'edit', edit_admin_state_path(state.id) %> | <%= link_to 'delete', delete_admin_state_path(state.id) %></td>
+	                </tr>
+	                <% end %>
+	            </tbody>
+	          </table>
+	        </div>
+	    </div>
+    </div>
+  </div>
+  <!-- End Page -->

@@ -2,45 +2,57 @@ class Admin::StatesController < ApplicationController
   layout 'admin'
 
   def index
-    @countries = Country.all
+    @states = State.joins(:country).select('states.name as state_name, states.id, states.country_id, countries.name as country_name')
+    # @states = State.includes(:country)
+    # @states
   end
 
   def show
-    @country = Country.find(params[:id])
+    @state = State.find(params[:id])
   end
 
   def new
-    @country = Country.new
+    @state = State.new
+    @countries = Country.select(:id, :name)
   end
 
   def create
-    @country = Country.new(country_params)
-    if @country.save
-      redirect_to(country_path)
+    @state = State.new(state_params)
+    if @state.save
+      redirect_to(admin_states_path)
     else
       render('new')
     end
   end
 
   def edit
-    @country = Country.find(params[:id])
+    @state = State.find(params[:id])
+    @countries = Country.select(:id, :name)
   end
 
   def update
-
+    @state = State.find(params[:id])
+    if @state.update_attributes(state_params)
+      flash[:notice] = "State updated successfully."
+      redirect_to(admin_states_path)
+    else
+      render('edit')
+    end
   end
 
   def delete
-    @country = Country.find(params[:id])
+    @state = State.find(params[:id])
   end
 
   def destroy
-    @country = Country.find(params[:id])
+    @state = State.find(params[:id])
+    @state.destroy
+    redirect_to(admin_states_path)
   end
 
   private
 
-  def country_params
-    params.require(:country).permit(:first_name, :last_name, :email, :phone_no)
-  end 
+  def state_params
+    params.require(:state).permit(:name, :country_id)
+  end
 end
