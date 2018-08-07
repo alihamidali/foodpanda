@@ -1,4 +1,4 @@
 class Role < ApplicationRecord
-	has_many :privileges
-	has_many :rights, through: :privileges 
+	has_many :role_rights
+	has_many :rights, through: :role_rights 
 end

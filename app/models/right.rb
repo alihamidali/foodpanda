@@ -1,4 +1,4 @@
 class Right < ApplicationRecord
-	has_many :privileges
-	has_many :roles, through: :privileges
+	has_many :role_rights
+	has_many :roles, through: :role_rights
 end

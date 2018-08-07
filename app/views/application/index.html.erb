@@ -1,36 +1,23 @@
 <div class="container">
   <div class="row">
     <div class="card-group">
-      <div class="card col-md-3">
-        <a href="#"> <img class="card-img-top" src="<%= image_path("img_avatar1.png") %>" alt="Card image cap"> </a>
-         <div class="card-body">
-            <h5 class="card-title">City name</h5>
-        </div>
-      </div> 
-      <div class="card col-md-3">
-        <a href="#"> <img class="card-img-top" src="<%= image_path("img_avatar1.png") %>" alt="Card image cap"> </a>
-         <div class="card-body">
-            <h5 class="card-title">City name</h5>
-        </div>
-      </div> 
-      <div class="card col-md-3">
-        <a href="#"> <img class="card-img-top" src="<%= image_path("img_avatar1.png") %>" alt="Card image cap"> </a>
-         <div class="card-body">
-            <h5 class="card-title">City name</h5>
-        </div>
-      </div> 
-      <div class="card col-md-3">
-        <a href="#"> <img class="card-img-top" src="<%= image_path("img_avatar1.png") %>" alt="Card image cap"> </a>
-         <div class="card-body">
-            <h5 class="card-title">City name</h5>
-        </div>
-      </div> 
-      <div class="card col-md-3">
-        <a href="#"> <img class="card-img-top" src="<%= image_path("img_avatar1.png") %>" alt="Card image cap"> </a>
-         <div class="card-body">
-            <h5 class="card-title">City name</h5>
-        </div>
-      </div> 
+      <% if @cities.count > 0 %>
+        <% @cities.each do |city|%>
+          <div class="card col-md-3">
+            <a href="#"> <%= image_tag 'img_avatar1.png', :class => 'card-img-top' %></a>
+             <div class="card-body">
+                <h5 class="card-title"><% city.name %></h5>
+            </div>
+          </div> 
+        <% end %>
+      <% else  %>
+        <div class="card col-md-4">
+          <a href="#"> <%= image_tag 'img_avatar1.png', :class => 'card-img-top' %></a>
+          <div class="card-body">
+            <h5 class="card-title">NO City exists</h5>
+          </div>
+        </div> 
+      <% end %>
     </div>
   </div>
 </div>

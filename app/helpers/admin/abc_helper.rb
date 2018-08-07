@@ -1,0 +1,2 @@
+module Admin::AbcHelper
+end

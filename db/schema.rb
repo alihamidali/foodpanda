@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_02_094356) do
+ActiveRecord::Schema.define(version: 2018_08_07_111717) do
 
   create_table "branches", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "restaurant_id"
@@ -64,11 +64,6 @@ ActiveRecord::Schema.define(version: 2018_08_02_094356) do
     t.index ["restaurant_menu_list_id"], name: "index_menu_items_on_restaurant_menu_list_id"
   end
 
-  create_table "menus", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "order_lines", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name", limit: 50
     t.integer "order_id"
@@ -99,17 +94,6 @@ ActiveRecord::Schema.define(version: 2018_08_02_094356) do
     t.index ["restaurant_id"], name: "index_orders_on_restaurant_id"
     t.index ["status_id"], name: "index_orders_on_status_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
-  end
-
-  create_table "privilages", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
-    t.integer "role_id"
-    t.integer "right_id"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["right_id"], name: "index_privilages_on_right_id"
-    t.index ["role_id"], name: "index_privilages_on_role_id"
-    t.index ["user_id"], name: "index_privilages_on_user_id"
   end
 
   create_table "ratings", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
@@ -148,6 +132,18 @@ ActiveRecord::Schema.define(version: 2018_08_02_094356) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "role_rights", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.integer "role_id"
+    t.integer "right_id"
+    t.integer "user_id"
+    t.string "resource"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["right_id"], name: "index_role_rights_on_right_id"
+    t.index ["role_id"], name: "index_role_rights_on_role_id"
+    t.index ["user_id"], name: "index_role_rights_on_user_id"
   end
 
   create_table "roles", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|

@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Foodpanda</a>
+    <!-- <a class="navbar-brand" href="#">Foodpanda</a> -->
+    <%= link_to('Foodpanda', root_path, class: 'navbar-brand') %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -7,26 +8,84 @@
       <!-- <div class="row"> -->
         <div class="col-md-3 offset-md-9">
           <ul class="navbar-nav float-right">
+            <% if user_signed_in? %>
             <li class="nav-item dropdown">
               <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Profile
+                <%= current_user.first_name %>
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <% if current_user.has_role? :admin %>
                 <a class="dropdown-item" href="#">Admin Panel</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
+                <% else %>
+                <!-- <a class="dropdown-item" href="#">Profile</a> -->
+                <%= link_to('Profile', '/profile', :class => 'dropdown-item') %>
+                <% end %>
+                <%= link_to('Logout', destroy_user_session_path, method: 'delete', :class => 'dropdown-item') %>
               </div>
             </li>
+            <% else %>
             <li class="nav-item">
               <a class="nav-link" data-toggle="modal" data-target="#loginModal" href="#">Login</a>
             </li>
+            <% end %>
             <li class="nav-item">
               <a class="nav-link" href="#">Cart</a>
             </li>
               <!-- Login Modal -->
-              <%= render :partial => 'login_form', :locals => {user => @user} %>
+              <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <label class="modal-title form-check-label text-center" for="exampleCheck1">Login</label>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <button type="submit" class="btn btn-primary btn-block">Login through facebook</button>
+                      <hr class="my-4" />
+                      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: 'form'}) do |f| %>
+                        <%= devise_error_messages! %>
+                        
+                        <%= render :partial => 'login_form', :locals => {:f => f} %>
+
+                        <%= f.submit('Login', class: 'btn btn-primary btn-block') %>
+                        <!-- <button type="submit" class="btn btn-primary btn-block">Login</button> -->
+                      <% end %>
+                    </div>
+                    <div class="modal-footer">
+                      <label class="form-check-label">Don't have an account?
+                      </label>
+                      <a class="btn" data-toggle="modal" data-target="#signupModal" data-dismiss="modal" href="#">Signup</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <!-- Register Modal -->
-              <%= render :partial => 'register_form', :locals => {} %>
+              <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <label class="modal-title form-check-label text-center" for="exampleCheck1">Register</label>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <button type="submit" class="btn btn-primary btn-block">Register with facebook</button>
+                      <hr class="my-4" />
+                      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { role: 'form' }) do |f| %>
+                        <%= render :partial => 'register_form', :locals => {:f => f} %>
+                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                      <% end %>
+                    </div>
+                    <div class="modal-footer">
+                      <label class="form-check-label">You have an account?
+                      </label>
+                      <a class="btn" data-toggle="modal" data-target="#loginModal" data-dismiss="modal" href="#">Login</a>
+                    </div>
+                  </div>
+                </div>
               </div>
           </ul>
         </div>
