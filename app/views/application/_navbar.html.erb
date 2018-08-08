@@ -15,7 +15,8 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <% if current_user.has_role? :admin %>
-                <a class="dropdown-item" href="#">Admin Panel</a>
+                <!-- <a class="dropdown-item" href="#">Admin Panel</a> -->
+                <%= link_to('Admin Panel', 'admin', :class => 'dropdown-item') %>
                 <% else %>
                 <!-- <a class="dropdown-item" href="#">Profile</a> -->
                 <%= link_to('Profile', '/profile', :class => 'dropdown-item') %>

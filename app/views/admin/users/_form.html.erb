@@ -1,0 +1,12 @@
+<div class="form-group">
+    <%= label_tag(:user_id, 'Select User', class: 'col-sm-4 control-label') %>
+    <div class="col-sm-8">
+        <%= select_tag('user_id', options_from_collection_for_select(@users, 'id', 'email')) %>
+    </div>
+    </div>
+<div class="form-group">
+    <%= label_tag(:role_id, 'Select role', class: 'col-sm-4 control-label') %>
+    <div class="col-sm-8">
+    	<%= select_tag('role_id', options_from_collection_for_select(@roles, 'id', 'name')) %>
+    </div>
+  </div>

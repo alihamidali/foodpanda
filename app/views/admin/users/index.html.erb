@@ -1,4 +1,4 @@
-<!-- Page -->
+Page -->
   <div class="page">
     <div class="page-header text-center">
       <h1 class="page-title">Page Title</h1>
@@ -7,7 +7,87 @@
       </p>
     </div>
     <div class="page-content">
-      
+      <!-- Example Basic -->
+                <div class="example table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <!-- <th>#</th> -->
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Role</th>
+                        <th>ACtion</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @users.each do |user| %>
+                        <tr>
+                          <td><%= user.first_name %></td>
+                          <td><%= user.last_name %></td>
+                          <td><%= user.roles.name %></td>
+                          <td>
+                            <span class="label label-danger">admin</span>
+                          </td>
+                        </tr>
+                      <% end %>
+                      <!-- <tr>
+                        <td>1</td>
+                        <td>Teagan</td>
+                        <td>Prohaska</td>
+                        <td>@Elijah</td>
+                        <td>
+                          <span class="label label-danger">admin</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Andy</td>
+                        <td>Gaylord</td>
+                        <td>@Ramiro</td>
+                        <td>
+                          <span class="label label-info">member</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>Veronica</td>
+                        <td>Gusikowski</td>
+                        <td>@Maxime</td>
+                        <td>
+                          <span class="label label-warning">developer</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>Bruce</td>
+                        <td>Rogahn</td>
+                        <td>@Maggio</td>
+                        <td>
+                          <span class="label label-success">supporter</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>5</td>
+                        <td>Carolina</td>
+                        <td>Hickle</td>
+                        <td>@Hammes</td>
+                        <td>
+                          <span class="label label-info">member</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>6</td>
+                        <td>Madaline</td>
+                        <td>Eichmann</td>
+                        <td>@Amaya</td>
+                        <td>
+                          <span class="label label-success">supporter</span>
+                        </td>
+                      </tr> -->
+                    </tbody>
+                  </table>
+                </div>
+              <!-- End Example Basic -->
     </div>
   </div>
-  <!-- End Page -->
+  <!-- End Page

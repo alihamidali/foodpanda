@@ -12,7 +12,7 @@
 	          <h3 class="panel-title">Add Row</h3>
 	        </header>
 	        <div id="exampleTableAddToolbar">
-	        	<%= link_to(new_admin_city_path(), class: "btn btn-outline btn-primary") do %>
+	        	<%= link_to(new_admin_right_path(), class: "btn btn-outline btn-primary") do %>
 	        	<i class="icon wb-plus" aria-hidden="true"></i> Add row
 	        	<% end %>
 	        </div>
@@ -20,30 +20,22 @@
 	          <table class="table table-hover dataTable table-striped width-full" id="exampleTableAdd">
 	            <thead>
 	              <tr>
-	                <th>City Name</th>
-	                <th>State Name</th>
-	                <th>Image</th>
+	                <th>Name</th>
 	                <th>Actions</th>
 	              </tr>
 	            </thead>
 	            <tfoot>
 	              <tr>
-	                <th>City Name</th>
-	                <th>State Name</th>
-	                <th>Image</th>
+	                <th>Name</th>
 	                <th>Actions</th>
 	              </tr>
 	            </tfoot>
 	            <tbody>
-	            	<%= @cities.each do |city| %>
-	            	<% if city.thumbnail.attachment.present? %>
+	            	<% @rights.each do |right| %>
 	            	<tr>
-	                	<td><%= city[:name] %></td>
-	                	<td><%= city[:state_name] %></td>
-	                	<td><%= image_tag rails_blob_path(city.thumbnail.blob) %></td>
-	                	<td><%= link_to 'edit', edit_admin_city_path(city.id) %> | <%= link_to 'delete', delete_admin_city_path(city.id) %></td>
+	                	<td><%= right[:name] %></td>
+	                	<td><%= link_to 'edit', edit_admin_right_path(right.id) %> | <%= link_to 'delete', delete_admin_right_path(right.id) %></td>
 	                </tr>
-	                <% end %>
 	                <% end %>
 	            </tbody>
 	          </table>

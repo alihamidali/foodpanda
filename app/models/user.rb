@@ -6,9 +6,7 @@ class User < ApplicationRecord
 	has_many :orders
 	has_many :inCompleteOrders
 
-	has_many :role_rights
-	has_many :roles, :through => :role_rights
-	has_many :rights, :through => :role_rights
+	has_and_belongs_to_many :roles
 
 	has_one :restaurant
 
@@ -21,6 +19,5 @@ class User < ApplicationRecord
 
 	def has_role?(role_sym)
 		roles.any? { |r| r.name.underscore.to_sym == role_sym }
-
 	end
 end

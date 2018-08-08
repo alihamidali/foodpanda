@@ -1,5 +1,6 @@
 class Admin::UsersController < ApplicationController
 
+  skip_before_action :verify_authenticity_token
   layout 'admin'
 
   
@@ -12,7 +13,8 @@ class Admin::UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    @users = User.all
+    @roles = Role.all
   end
 
   def create
@@ -38,6 +40,22 @@ class Admin::UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+  end
+
+  def show_user_roles
+    @users = User.joins(:roles).select('users.*, roles.*')
+  end
+
+  def assign_role_to_user
+    @user = User.find(params[:user_id])
+    @role = Role.find(params[:role_id])
+    @user.roles << @role
+  end
+
+  def remove_role_from_user
+    @user = User.find(params[:user_id])
+    @role = Role.find(params[:role_id])
+    @user.roles << @role
   end
 
   private
