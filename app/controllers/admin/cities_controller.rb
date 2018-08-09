@@ -1,11 +1,10 @@
 class Admin::CitiesController < ApplicationController
-  before_action :authenticate_user!
-  layout 'admin'
 
+  layout 'admin'
+  
   def index
     @cities = City.joins(:state).select('cities.*, states.name as state_name')
-    # @cities = City.includes(:country)
-    # @cities
+
   end
 
   def show

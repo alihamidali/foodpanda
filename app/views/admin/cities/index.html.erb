@@ -35,12 +35,19 @@
 	              </tr>
 	            </tfoot>
 	            <tbody>
-	            	<%= @cities.each do |city| %>
+	            	<% @cities.each do |city| %>
 	            	<% if city.thumbnail.attachment.present? %>
 	            	<tr>
 	                	<td><%= city[:name] %></td>
 	                	<td><%= city[:state_name] %></td>
-	                	<td><%= image_tag rails_blob_path(city.thumbnail.blob) %></td>
+	                	<td><%= image_tag rails_blob_path(city.thumbnail.blob), style: 'width=50;height=50;' %></td>
+	                	<td><%= link_to 'edit', edit_admin_city_path(city.id) %> | <%= link_to 'delete', delete_admin_city_path(city.id) %></td>
+	                </tr>
+	                <% else %>
+	                <tr>
+	                	<td><%= city[:name] %></td>
+	                	<td><%= city[:state_name] %></td>
+	                	<td>No image</td>
 	                	<td><%= link_to 'edit', edit_admin_city_path(city.id) %> | <%= link_to 'delete', delete_admin_city_path(city.id) %></td>
 	                </tr>
 	                <% end %>

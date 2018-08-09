@@ -40,7 +40,7 @@
                     <td><%= user[:first_name] %></td>
                     <td><%= user[:last_name] %></td>
                     <td><%= user[:name] %></td>
-                    <td><%= link_to 'edit' url: => 'add_new' | link_to 'delete' url: => 'unassign_role' %></td>
+                    <td><%= link_to 'delete', admin_users_unassign_role_path(user[:id]) %></td>
                   </tr>
                   <% end %>
               </tbody>

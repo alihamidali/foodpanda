@@ -52,6 +52,13 @@ class Admin::UsersController < ApplicationController
     @user.roles << @role
   end
 
+  def delete_role_from_user
+    print "PARAMS: "
+    puts params
+    @user = User.find(params[:id])
+    @role = Role.find(params[:role_id])
+  end
+
   def remove_role_from_user
     @user = User.find(params[:user_id])
     @role = Role.find(params[:role_id])

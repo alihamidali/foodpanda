@@ -22,14 +22,14 @@ Rails.application.routes.draw do
   #   get 'roles/delete'
   # end
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register', edit: 'settings' }
-  root :to => 'application#index'
-  get '/', to: 'application#index'
-  get 'profile', to: 'application#user_profile'
-  post 'update_profile', to: 'application#update_profile'
+  root :to => 'home#index'
+  get '/', to: 'home#index'
+  get 'profile', to: 'home#user_profile'
+  post 'update_profile', to: 'home#update_profile'
   get 'admin', to: 'admin#index'
   get 'admin/users/show_admins', to: 'admin/users#show_user_roles'
   match 'admin/users/add_new' => 'admin/users#assign_role_to_user', :via => :post
-  match 'admin/users/unassign_role' => 'admin/users#remove_role_from_user', :via => :delete
+  get 'admin/users/unassign_role?id', to: 'admin/users#delete_role_from_user'
   # get 'login/index'
   # get 'login/login'
   # get 'login/forgot_password'
@@ -38,13 +38,47 @@ Rails.application.routes.draw do
 
   namespace :admin do
   		resources :users
-  		resources :restaurants do member do get :delete end end
-      resources :orders do member do get :delete end end
-      resources :roles do member do get :delete end end
-      resources :rights do member do get :delete end end
-      resources :cities do member do get :delete end end
-      resources :countries do member do get :delete end end
-  		resources :states do member do get :delete end end
+  		resources :restaurants do 
+        member do 
+          get :delete 
+        end 
+      end
+      
+      resources :orders do 
+        member do 
+          get :delete 
+        end 
+      end
+      
+      resources :roles do 
+        member do 
+          get :delete 
+        end 
+      end
+      
+      resources :rights do 
+        member do 
+          get :delete 
+        end 
+      end
+      
+      resources :cities do 
+        member do 
+          get :delete 
+        end 
+      end
+      
+      resources :countries do 
+        member do 
+          get :delete 
+        end 
+      end
+  		
+      resources :states do 
+        member do 
+          get :delete 
+        end 
+      end
   end
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
