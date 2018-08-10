@@ -73,3 +73,5 @@ gem "slim", "~> 3.0"
 gem "bootstrap", "~> 4.1"
 
 gem "jquery-rails", "~> 4.3"
+
+gem "rails-erd", "~> 1.5"
